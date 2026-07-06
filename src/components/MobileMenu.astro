@@ -1,0 +1,185 @@
+---
+import logo from '../assets/images/logo-lockup.png';
+
+const links = [
+  { href: '#niches', label: 'Verticals' },
+  { href: '#channels', label: 'Traffic Sources' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<div id="mobile-menu" class="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="menu__glow" aria-hidden="true"></div>
+  <div class="menu__inner">
+    <div class="menu__top">
+      <a href="#top" class="menu__logo" aria-label="Media UP - back to top" data-menu-close>
+        <img src={logo.src} width="150" height="26" alt="Media UP" />
+      </a>
+      <button type="button" class="menu__close" aria-label="Close menu" data-menu-close>&#10005;</button>
+    </div>
+    <nav class="menu__nav" aria-label="Primary">
+      {links.map((l) => <a href={l.href} class="menu__link chrome" data-menu-nav>{l.label}</a>)}
+    </nav>
+    <div class="menu__cta-wrap">
+      <a href="#contact" class="btn-outline btn-outline--menu" data-menu-nav>Book a Consultation</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .menu {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--bg);
+  }
+
+  .menu[hidden] {
+    display: none;
+  }
+
+  .menu__glow {
+    position: absolute;
+    top: -160px;
+    right: -180px;
+    width: 460px;
+    height: 460px;
+    border-radius: 230px;
+    -webkit-filter: blur(45px);
+    filter: blur(45px);
+    background: radial-gradient(circle at center, var(--glow-core) 0%, rgba(30, 65, 170, 0) 68%);
+  }
+
+  .menu__inner {
+    position: relative;
+    height: 100%;
+    max-width: var(--shell-max);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  .menu__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 24px;
+  }
+
+  .menu__logo {
+    display: inline-flex;
+  }
+
+  .menu__logo img {
+    width: 150px;
+    height: 26px;
+    object-fit: contain;
+  }
+
+  .menu__close {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 26px;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .menu__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 64px;
+  }
+
+  .menu__link {
+    display: inline-block;
+    width: max-content;
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: -0.6px;
+  }
+
+  .menu__cta-wrap {
+    margin-top: auto;
+  }
+
+  .btn-outline--menu {
+    width: 100%;
+    height: 54px;
+    border-radius: 27px;
+    font-size: 16.8px;
+  }
+</style>
+
+<script>
+  const menu = document.getElementById('mobile-menu');
+  if (menu) {
+    const openBtn = document.querySelector('[data-menu-open]');
+    const closeBtns = menu.querySelectorAll('[data-menu-close]');
+    const navEls = menu.querySelectorAll('[data-menu-nav]');
+    const getFocusable = () =>
+      Array.from(menu.querySelectorAll('a[href], button:not([disabled])'));
+    let lastFocus = null;
+
+    const lock = (on) => {
+      document.documentElement.style.overflow = on ? 'hidden' : '';
+    };
+
+    const open = () => {
+      lastFocus = document.activeElement;
+      menu.hidden = false;
+      openBtn?.setAttribute('aria-expanded', 'true');
+      lock(true);
+      getFocusable()[0]?.focus();
+    };
+
+    // Hide without stealing focus - used by in-page nav so the anchor scroll lands.
+    const hide = () => {
+      menu.hidden = true;
+      openBtn?.setAttribute('aria-expanded', 'false');
+      lock(false);
+    };
+
+    // Full close - returns focus to whatever opened the dialog.
+    const close = () => {
+      hide();
+      const target = lastFocus instanceof HTMLElement ? lastFocus : openBtn;
+      target?.focus?.();
+    };
+
+    openBtn?.addEventListener('click', open);
+    closeBtns.forEach((el) => el.addEventListener('click', close));
+    navEls.forEach((el) => el.addEventListener('click', hide));
+
+    document.addEventListener('keydown', (e) => {
+      if (menu.hidden) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        close();
+        return;
+      }
+      if (e.key === 'Tab') {
+        const f = getFocusable();
+        if (!f.length) return;
+        const first = f[0];
+        const last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  }
+</script>

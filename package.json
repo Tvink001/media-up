@@ -1,0 +1,28 @@
+{
+  "name": "media-up",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "optimize:assets": "node scripts/optimize-assets.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.0.6",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.2",
+    "playwright": "^1.61.1",
+    "postcss": "^8.5.16"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead"
+  ]
+}

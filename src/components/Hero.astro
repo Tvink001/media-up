@@ -1,0 +1,101 @@
+---
+import { Picture } from 'astro:assets';
+import hero from '../assets/images/hero-graphic.png';
+---
+
+<section class="hero" aria-label="Introduction">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__content">
+    <div class="hero__figure">
+      <Picture
+        src={hero}
+        formats={['avif', 'webp']}
+        width={280}
+        height={280}
+        densities={[1, 2]}
+        alt=""
+        priority
+      />
+    </div>
+    <h1 class="hero__title">Performance That Drives Real Growth</h1>
+    <p class="hero__sub">
+      Performance <span>agency that builds growth systems</span> through traffic,analytics, and
+      scalable advertising campaigns.
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 104px var(--gutter) 36px;
+  }
+
+  .hero__grid {
+    position: absolute;
+    inset: -22px -26px -10px -40px;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 46px 46px;
+    opacity: 0.6;
+  }
+
+  .hero__glow {
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 520px;
+    height: 520px;
+    border-radius: 260px;
+    -webkit-filter: blur(45px);
+    filter: blur(45px);
+    background: radial-gradient(circle at center, var(--glow-core) 0%, rgba(30, 65, 170, 0) 68%);
+  }
+
+  .hero__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .hero__figure {
+    line-height: 0;
+  }
+
+  .hero__figure :global(img) {
+    width: 280px;
+    height: 280px;
+    object-fit: contain;
+    -webkit-filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.55));
+    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.55));
+  }
+
+  .hero__title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 40px;
+    letter-spacing: -1px;
+    line-height: 1.05;
+    color: var(--text);
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .hero__sub {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 29px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .hero__sub span {
+    color: var(--text);
+  }
+</style>

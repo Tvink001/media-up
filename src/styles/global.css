@@ -1,0 +1,201 @@
+/* ============================================================
+   Media UP - design tokens & base styles
+   Values transcribed from the design handoff (single source of truth).
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --bg: #05070e;
+  --card: #010141; /* niche & channel card fill */
+  --panel-2: #101826; /* secondary card / row / pill fill */
+
+  /* Text */
+  --text: #edf0fa; /* primary / light */
+  --muted: #8892ae; /* muted */
+  --dim: #4e5770; /* tertiary / dim */
+  --cta-ink: #150e00; /* dark ink on the mint->lavender button */
+  --field-border: #e5e8dc;
+  --white: #ffffff;
+
+  /* Hairlines & accents */
+  --hairline: rgba(255, 255, 255, 0.04);
+  --hairline-05: rgba(255, 255, 255, 0.05);
+  --hairline-06: rgba(255, 255, 255, 0.06);
+  --gold-border: rgba(201, 151, 59, 0.14);
+  --pill-fill: rgba(16, 24, 38, 0.5);
+  --blue-tile: rgba(62, 114, 236, 0.12); /* channel icon tile */
+  --gold-tile: rgba(201, 151, 59, 0.12); /* partner icon square */
+  --grid-line: rgba(62, 114, 236, 0.05); /* hero background grid */
+  --glow-core: rgba(30, 65, 170, 0.22); /* radial glow */
+
+  /* Signature gradients */
+  --chrome: linear-gradient(
+    93deg,
+    rgb(195, 210, 224) 4%,
+    rgb(251, 251, 251) 23.5%,
+    rgb(162, 181, 201) 45%,
+    rgb(249, 250, 251) 71%,
+    rgb(165, 188, 210) 93%
+  );
+  --panel-grad: linear-gradient(141deg, #0d1630 0%, #09112a 100%);
+  --stats-grad: linear-gradient(120deg, #0d1630 11%, #09112a 109%);
+  --cta-grad: linear-gradient(-67deg, rgb(189, 255, 234) 37.7%, rgb(195, 185, 255) 66.4%);
+
+  /* Radii */
+  --r-panel: 28px;
+  --r-card: 20px;
+  --r-pill: 50px;
+  --r-btn: 25px;
+  --r-tile: 14px;
+
+  /* Typography (families registered by the layout; see Base.astro) */
+  --font-head: var(--font-manrope, 'Manrope'), system-ui, sans-serif;
+  --font-body: var(--font-inter, 'Inter'), system-ui, sans-serif;
+
+  /* Layout */
+  --shell-max: 440px;
+  --gutter: 24px;
+  --section-y: 32px;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+p,
+figure,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+input {
+  font: inherit;
+}
+
+input::placeholder {
+  color: #aeb7cc;
+  opacity: 1;
+}
+
+/* ---------- Shared utilities ---------- */
+
+/* Chrome/"liquid metal" gradient text. Both -webkit- and standard properties
+   are set so it renders across Chromium, Firefox and WebKit (Safari). */
+.chrome {
+  background-image: var(--chrome);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Accessible visually-hidden helper (for form labels). */
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Centered mobile shell: fluid on phones, contained on larger screens. */
+.shell {
+  position: relative;
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  background: var(--bg);
+  overflow: hidden; /* clips hero grid/glow bleed */
+}
+
+/* Outlined "Book a Consultation" button (menu + footer share the base). */
+.btn-outline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--white);
+  background: transparent;
+  color: var(--white);
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: var(--font-head);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: background-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+:where(a, button, input):focus-visible {
+  outline: 2px solid #9fb4ff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

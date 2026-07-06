@@ -1,0 +1,23 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# local env
+.env
+.env.*
+
+# os / editor cruft
+.DS_Store
+Thumbs.db
+
+# raw design source (optimized, ready-to-ship images live in src/assets/images)
+design-assets/
+design_handoff_media_up/
+
+# qa artifacts
+.cbshots/
+test-results/
+playwright-report/

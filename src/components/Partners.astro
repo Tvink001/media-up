@@ -1,0 +1,130 @@
+---
+import { partners } from '../data/content';
+---
+
+<section class="partners" aria-labelledby="partners-title">
+  <header class="partners__head">
+    <h2 id="partners-title" class="partners__title chrome">Working with the Best in Class</h2>
+    <p class="partners__sub">
+      We maintain direct relationships with premium ad networks, affiliate networks and CPA
+      platforms worldwide.
+    </p>
+  </header>
+  <div class="partners__viewport">
+    <ul class="partners__track" data-marquee>
+      {
+        partners.map((p) => (
+          <li class="chip">
+            <span class="chip__icon" aria-hidden="true">
+              {p.icon}
+            </span>
+            <span class="chip__name">{p.name}</span>
+          </li>
+        ))
+      }
+      {
+        partners.map((p) => (
+          <li class="chip" aria-hidden="true">
+            <span class="chip__icon">{p.icon}</span>
+            <span class="chip__name">{p.name}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .partners {
+    padding: 36px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .partners__head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    text-align: center;
+    padding: 0 var(--gutter);
+  }
+
+  .partners__title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: -0.9px;
+    line-height: 1.15;
+  }
+
+  .partners__sub {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--muted);
+  }
+
+  .partners__viewport {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  }
+
+  .partners__track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: muMarquee 34s linear infinite;
+  }
+
+  .chip {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: var(--panel-2);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-pill);
+    padding: 11px 20px;
+    white-space: nowrap;
+  }
+
+  .chip__icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    background: var(--gold-tile);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+
+  .chip__name {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 13.5px;
+    line-height: 22.31px;
+    color: var(--muted);
+  }
+
+  @keyframes muMarquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

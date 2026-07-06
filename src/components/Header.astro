@@ -1,0 +1,72 @@
+---
+import logo from '../assets/images/logo-lockup.png';
+---
+
+<header class="site-header">
+  <a href="#top" class="site-header__logo" aria-label="Media UP - back to top">
+    <img src={logo.src} width="150" height="26" alt="Media UP" />
+  </a>
+  <button
+    type="button"
+    class="burger"
+    aria-label="Open menu"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+    data-menu-open
+  >
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
+</header>
+
+<style>
+  .site-header {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--gutter);
+    z-index: 20;
+  }
+
+  .site-header__logo {
+    display: inline-flex;
+  }
+
+  .site-header__logo img {
+    width: 150px;
+    height: 26px;
+    object-fit: contain;
+  }
+
+  .burger {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--text);
+    transition: background-color 0.2s ease;
+  }
+
+  @media (hover: hover) {
+    .burger:hover span {
+      background: #fff;
+    }
+  }
+</style>

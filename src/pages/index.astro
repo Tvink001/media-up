@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import CheckPanel from '../components/CheckPanel.astro';
+import Niches from '../components/Niches.astro';
+import Channels from '../components/Channels.astro';
+import Partners from '../components/Partners.astro';
+import Cta from '../components/Cta.astro';
+import Footer from '../components/Footer.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import { whyFail, system } from '../data/content';
+---
+
+<Base>
+  <div id="top" class="shell">
+    <Header />
+    <main>
+      <Hero />
+      <Stats />
+      <CheckPanel
+        titleId="whyfail-title"
+        title="Why most advertising campaigns fail to scale?"
+        para="Many businesses lose growth potential due to chaotic traffic acquisition, weak analytics, and the lack of a clear growth process. That's why most campaigns never move from testing to consistent results."
+        points={whyFail}
+      />
+      <Niches />
+      <CheckPanel
+        titleId="system-title"
+        title="A system that turns traffic into scalable results"
+        para="A comprehensive performance approach to traffic acquisition, analytics, and advertising optimization without chaos or unnecessary costs. From testing to consistent scaling of advertising performance."
+        points={system}
+      />
+      <Channels />
+      <Partners />
+      <Cta />
+    </main>
+    <Footer />
+  </div>
+  <MobileMenu />
+</Base>

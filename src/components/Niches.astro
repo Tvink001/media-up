@@ -1,0 +1,169 @@
+---
+import { niches } from '../data/content';
+import education from '../assets/images/icon-education.png';
+import finance from '../assets/images/icon-finance.png';
+import nutra from '../assets/images/emoji-nutra.png';
+import saas from '../assets/images/icon-saas.png';
+import leadgen from '../assets/images/icon-leadgen.png';
+
+// Raster niche icons: display size + the design's per-card optical left offset.
+const imageMap = {
+  education: { src: education.src, w: 84, h: 72, ml: -8 },
+  finance: { src: finance.src, w: 24, h: 34, ml: 0 },
+  nutra: { src: nutra.src, w: 40, h: 40, ml: -1 },
+  saas: { src: saas.src, w: 51, h: 51, ml: -2 },
+  leadgen: { src: leadgen.src, w: 49, h: 51, ml: -3 },
+} as const;
+---
+
+<section id="niches" class="niches" aria-labelledby="niches-title">
+  <div class="niches__wrap">
+    <header class="niches__head">
+      <h2 id="niches-title" class="niches__title chrome">Niches We Dominate</h2>
+      <p class="niches__sub">
+        Deep expertise across the highest-performing verticals in performance marketing.
+      </p>
+    </header>
+    <ul class="niches__grid">
+      {
+        niches.map((n) => (
+          <li class="niche">
+            <div
+              class="niche__icon"
+              aria-hidden="true"
+              style={`margin-left:${n.icon.kind === 'image' ? imageMap[n.icon.key].ml : -3}px`}
+            >
+              {n.icon.kind === 'image' ? (
+                <img
+                  src={imageMap[n.icon.key].src}
+                  width={imageMap[n.icon.key].w}
+                  height={imageMap[n.icon.key].h}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <span class:list={['niche__glyph', { 'niche__glyph--head': n.icon.head }]}>
+                  {n.icon.char}
+                </span>
+              )}
+            </div>
+            <h3 class="niche__title">{n.title}</h3>
+            <p class="niche__desc">{n.desc}</p>
+            <div class="niche__tag">
+              <span class="chrome">{n.tag}</span>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .niches {
+    padding: var(--section-y) var(--gutter);
+    scroll-margin-top: 16px;
+  }
+
+  .niches__wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .niches__head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .niches__title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: -0.9px;
+    line-height: 1.15;
+  }
+
+  .niches__sub {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--muted);
+  }
+
+  .niches__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .niche {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-card);
+    padding: 28px 25px;
+  }
+
+  .niche__icon {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+  }
+
+  .niche__icon img {
+    object-fit: contain;
+  }
+
+  .niche__glyph {
+    font-size: 52px;
+    line-height: 50px;
+  }
+
+  .niche__glyph--head {
+    font-family: var(--font-head);
+    color: var(--text);
+    letter-spacing: 0.9px;
+    line-height: 1;
+  }
+
+  .niche__title {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 16.8px;
+    line-height: 18.82px;
+    color: var(--text);
+  }
+
+  .niche__desc {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13.3px;
+    line-height: 21.51px;
+    color: var(--muted);
+  }
+
+  .niche__tag {
+    align-self: flex-start;
+    background: var(--pill-fill);
+    border-radius: var(--r-pill);
+    padding: 2.5px 10px;
+    margin-top: 2px;
+  }
+
+  .niche__tag span {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.773px;
+    text-transform: uppercase;
+    line-height: 18.22px;
+  }
+</style>

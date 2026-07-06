@@ -1,0 +1,244 @@
+---
+import Panel from './Panel.astro';
+---
+
+<section id="contact" class="cta" aria-labelledby="cta-title">
+  <Panel variant="gold">
+    <div class="cta__body">
+      <h2 id="cta-title" class="cta__title chrome">Ready to Scale Your Growth?</h2>
+      <p class="cta__para">
+        Partner with Media UP to scale traffic, optimize campaigns, and achieve measurable
+        performance across global markets.
+      </p>
+      <form class="cta__form" novalidate>
+        <div class="field">
+          <label for="cta-name" class="vh">Your name</label>
+          <input
+            id="cta-name"
+            name="name"
+            type="text"
+            placeholder="Your name"
+            autocomplete="name"
+            required
+            aria-describedby="cta-name-err"
+          />
+          <span id="cta-name-err" class="field__err" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="cta-number" class="vh">Phone number</label>
+          <input
+            id="cta-number"
+            name="number"
+            type="tel"
+            inputmode="tel"
+            placeholder="Number"
+            autocomplete="tel"
+            required
+            aria-describedby="cta-number-err"
+          />
+          <span id="cta-number-err" class="field__err" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="cta-telegram" class="vh">Telegram</label>
+          <input
+            id="cta-telegram"
+            name="telegram"
+            type="text"
+            placeholder="Telegram"
+            autocomplete="off"
+            required
+            aria-describedby="cta-telegram-err"
+          />
+          <span id="cta-telegram-err" class="field__err" aria-live="polite"></span>
+        </div>
+        <button type="submit" class="btn-cta">Send Inquiry</button>
+        <p class="cta__status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </Panel>
+</section>
+
+<style>
+  .cta {
+    padding: var(--section-y) var(--gutter);
+    scroll-margin-top: 16px;
+  }
+
+  .cta__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 48px 24px;
+  }
+
+  .cta__title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 27px;
+    letter-spacing: -0.88px;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .cta__para {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15.5px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  .cta__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 12px;
+  }
+
+  .cta__form input {
+    width: 100%;
+    height: 52px;
+    border: 1px solid var(--field-border);
+    border-radius: var(--r-card);
+    padding: 15px 24px;
+    box-sizing: border-box;
+    background: transparent;
+    outline: none;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.14px;
+    color: var(--text);
+    transition: border-color 0.2s ease;
+  }
+
+  .cta__form input:focus-visible {
+    border-color: #ffffff;
+    outline: none;
+  }
+
+  .cta__form input.is-invalid {
+    border-color: #ff8a8a;
+  }
+
+  .field__err {
+    display: block;
+    margin-top: 6px;
+    color: #ff9d9d;
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .field__err:empty {
+    display: none;
+  }
+
+  .btn-cta {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: var(--r-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+    background: var(--cta-grad);
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.14px;
+    color: var(--cta-ink);
+    transition: filter 0.2s ease;
+  }
+
+  @media (hover: hover) {
+    .btn-cta:hover {
+      filter: brightness(1.05);
+    }
+  }
+
+  .cta__status {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .cta__status:empty {
+    display: none;
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.cta__form');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('.cta__status');
+
+    const fields = [
+      {
+        input: form.querySelector<HTMLInputElement>('#cta-name'),
+        err: form.querySelector<HTMLElement>('#cta-name-err'),
+        validate: (v: string) => v.trim().length >= 2,
+        msg: 'Please enter your name.',
+      },
+      {
+        input: form.querySelector<HTMLInputElement>('#cta-number'),
+        err: form.querySelector<HTMLElement>('#cta-number-err'),
+        validate: (v: string) => /^[+()\-\s\d]{6,}$/.test(v.trim()),
+        msg: 'Please enter a valid phone number.',
+      },
+      {
+        input: form.querySelector<HTMLInputElement>('#cta-telegram'),
+        err: form.querySelector<HTMLElement>('#cta-telegram-err'),
+        validate: (v: string) => v.trim().length >= 2,
+        msg: 'Please enter your Telegram.',
+      },
+    ].filter((f) => f.input && f.err) as {
+      input: HTMLInputElement;
+      err: HTMLElement;
+      validate: (v: string) => boolean;
+      msg: string;
+    }[];
+
+    const setError = (f: (typeof fields)[number], show: boolean) => {
+      f.input.setAttribute('aria-invalid', show ? 'true' : 'false');
+      f.input.classList.toggle('is-invalid', show);
+      f.err.textContent = show ? f.msg : '';
+    };
+
+    // Clear a field's error as soon as it becomes valid again.
+    fields.forEach((f) => {
+      f.input.addEventListener('input', () => {
+        if (f.input.getAttribute('aria-invalid') === 'true' && f.validate(f.input.value)) {
+          setError(f, false);
+        }
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let firstInvalid: HTMLInputElement | null = null;
+      fields.forEach((f) => {
+        const ok = f.validate(f.input.value);
+        setError(f, !ok);
+        if (!ok && !firstInvalid) firstInvalid = f.input;
+      });
+
+      if (firstInvalid) {
+        if (status) status.textContent = '';
+        (firstInvalid as HTMLInputElement).focus();
+        return;
+      }
+
+      // No backend in this build: acknowledge and reset.
+      // Wire this to a real endpoint (fetch POST) when integrating.
+      if (status) status.textContent = 'Thanks - we will be in touch shortly.';
+      form.reset();
+    });
+  }
+</script>

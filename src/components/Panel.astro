@@ -1,0 +1,57 @@
+---
+import texture from '../assets/images/row-texture.webp';
+
+interface Props {
+  variant?: 'stats' | 'gold';
+  class?: string;
+}
+const { variant = 'gold', class: cls } = Astro.props;
+---
+
+<div class:list={['panel', `panel--${variant}`, cls]}>
+  <img
+    class="panel__tex"
+    src={texture.src}
+    width={texture.width}
+    height={texture.height}
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="panel__inner">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .panel {
+    position: relative;
+    border-radius: var(--r-panel);
+    overflow: hidden;
+  }
+
+  .panel--stats {
+    background: var(--stats-grad);
+    border: 1px solid var(--hairline-06);
+  }
+
+  .panel--gold {
+    background: var(--panel-grad);
+    border: 1px solid var(--gold-border);
+  }
+
+  .panel__tex {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .panel__inner {
+    position: relative;
+  }
+</style>

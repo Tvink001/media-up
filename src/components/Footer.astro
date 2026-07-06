@@ -1,0 +1,90 @@
+---
+import { Picture } from 'astro:assets';
+import growth from '../assets/images/growth-reflection.png';
+import footerBg from '../assets/images/footer-bg.webp';
+---
+
+<footer class="footer">
+  <div class="footer__growth">
+    <Picture src={growth} formats={['avif', 'webp']} width={720} height={225} alt="Growth" loading="lazy" />
+  </div>
+  <div class="footer__bar">
+    <img
+      class="footer__bar-bg"
+      src={footerBg.src}
+      width={footerBg.width}
+      height={footerBg.height}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="footer__bar-inner">
+      <a href="#contact" class="btn-outline btn-outline--footer">Book a Consultation</a>
+      <div class="footer__divider" aria-hidden="true"></div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+    padding: 24px var(--gutter) 44px;
+  }
+
+  .footer__growth {
+    width: 100%;
+    line-height: 0;
+  }
+
+  .footer__growth :global(img) {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .footer__bar {
+    width: 100%;
+    position: relative;
+    border-radius: var(--r-card);
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--hairline-06);
+  }
+
+  .footer__bar-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  .footer__bar-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 32px 24px;
+  }
+
+  .btn-outline--footer {
+    width: 220px;
+    height: 50px;
+    border-radius: var(--r-btn);
+    font-size: 16px;
+  }
+
+  .footer__divider {
+    width: 240px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--chrome);
+  }
+</style>

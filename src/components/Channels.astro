@@ -1,0 +1,112 @@
+---
+import { channels } from '../data/content';
+---
+
+<section id="channels" class="channels" aria-labelledby="channels-title">
+  <div class="channels__wrap">
+    <header class="channels__head">
+      <h2 id="channels-title" class="channels__title chrome">Every Major Channel</h2>
+      <p class="channels__sub">
+        Full-stack traffic expertise across paid, native, push and programmatic channels worldwide.
+      </p>
+    </header>
+    <ul class="channels__grid">
+      {
+        channels.map((c) => (
+          <li class="channel">
+            <span class="channel__tile" aria-hidden="true">
+              {c.emoji}
+            </span>
+            <h3 class="channel__name">{c.name}</h3>
+            <p class="channel__sub">{c.sub}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .channels {
+    padding: var(--section-y) var(--gutter);
+    scroll-margin-top: 16px;
+  }
+
+  .channels__wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .channels__head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .channels__title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: -0.9px;
+    line-height: 1.15;
+  }
+
+  .channels__sub {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: var(--muted);
+  }
+
+  .channels__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .channel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-card);
+    padding: 34px 20px;
+    min-height: 172px;
+    justify-content: center;
+  }
+
+  .channel__tile {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--r-tile);
+    background: var(--blue-tile);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+  .channel__name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 16.8px;
+    line-height: 22px;
+    text-align: center;
+    color: var(--text);
+  }
+
+  .channel__sub {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: center;
+    color: var(--muted);
+  }
+</style>

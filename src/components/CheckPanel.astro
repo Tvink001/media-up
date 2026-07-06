@@ -1,0 +1,113 @@
+---
+import Panel from './Panel.astro';
+import checkIcon from '../assets/images/check-icon.png';
+
+interface Props {
+  titleId: string;
+  title: string;
+  para: string;
+  points: string[];
+}
+const { titleId, title, para, points } = Astro.props;
+---
+
+<section class="checkpanel" aria-labelledby={titleId}>
+  <Panel variant="gold">
+    <div class="checkpanel__body">
+      <div class="checkpanel__head">
+        <h2 id={titleId} class="checkpanel__title">{title}</h2>
+        <p class="checkpanel__para">{para}</p>
+      </div>
+      <ul class="checkpanel__list">
+        {
+          points.map((p) => (
+            <li class="checkpanel__row">
+              <span class="checkpanel__check" aria-hidden="true">
+                <img src={checkIcon.src} width="26" height="26" alt="" loading="lazy" decoding="async" />
+              </span>
+              <span class="checkpanel__text">{p}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Panel>
+</section>
+
+<style>
+  .checkpanel {
+    padding: var(--section-y) var(--gutter);
+  }
+
+  .checkpanel__body {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 44px 24px;
+  }
+
+  .checkpanel__head {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .checkpanel__title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 27px;
+    letter-spacing: -0.88px;
+    line-height: 1.15;
+    color: var(--text);
+  }
+
+  .checkpanel__para {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15.5px;
+    line-height: 24px;
+    color: var(--muted);
+  }
+
+  .checkpanel__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .checkpanel__row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: var(--panel-2);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-card);
+    padding: 16px 20px;
+  }
+
+  .checkpanel__check {
+    flex: none;
+    width: 35.4px;
+    height: 35.4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .checkpanel__check img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+  }
+
+  .checkpanel__text {
+    flex: 1;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: var(--text);
+  }
+</style>
