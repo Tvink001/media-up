@@ -72,4 +72,30 @@ const stats = [
     line-height: 19px;
     color: var(--dim);
   }
+
+  @media (min-width: 1024px) {
+    .stats {
+      padding: 52px 0;
+    }
+
+    .stats :global(.panel) {
+      width: min(1192px, 100% - 48px);
+      margin-inline: auto;
+    }
+
+    .stats__list {
+      flex-direction: row;
+      padding: 58px 48px;
+    }
+
+    .stats__item {
+      flex: 1;
+      padding: 8px 29px;
+    }
+
+    .stats__item:not(:last-child) {
+      border-bottom: none;
+      border-right: 1px solid var(--hairline);
+    }
+  }
 </style>

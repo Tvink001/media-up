@@ -1,8 +1,9 @@
 # Media UP
 
-Mobile landing page for Media UP, a performance-marketing agency. Single-page,
-long-scroll layout on a dark "liquid chrome" theme, implemented from the mobile
-design handoff.
+Landing page for Media UP, a performance-marketing agency. Single-page,
+long-scroll layout on a dark "liquid chrome" theme. Responsive: the mobile
+design below 1024px and the desktop (Landing) design at 1024px and up, fluid in
+between. Both layouts share one component set and one content source.
 
 ## Stack
 

@@ -2,11 +2,21 @@
 import { Picture } from 'astro:assets';
 import growth from '../assets/images/growth-reflection.png';
 import footerBg from '../assets/images/footer-bg.webp';
+import logo from '../assets/images/logo-lockup.png';
 ---
 
 <footer class="footer">
   <div class="footer__growth">
-    <Picture src={growth} formats={['avif', 'webp']} width={720} height={225} alt="Growth" loading="lazy" />
+    <Picture
+      src={growth}
+      formats={['avif', 'webp']}
+      width={1192}
+      height={372}
+      widths={[720, 1192]}
+      sizes="(min-width: 1024px) 1192px, 100vw"
+      alt="Growth"
+      loading="lazy"
+    />
   </div>
   <div class="footer__bar">
     <img
@@ -20,6 +30,9 @@ import footerBg from '../assets/images/footer-bg.webp';
       decoding="async"
     />
     <div class="footer__bar-inner">
+      <a href="#top" class="footer__logo" aria-label="Media UP - back to top">
+        <img src={logo.src} width="207" height="36" alt="Media UP" />
+      </a>
       <a href="#contact" class="btn-outline btn-outline--footer">Book a Consultation</a>
       <div class="footer__divider" aria-hidden="true"></div>
     </div>
@@ -74,6 +87,10 @@ import footerBg from '../assets/images/footer-bg.webp';
     padding: 32px 24px;
   }
 
+  .footer__logo {
+    display: none;
+  }
+
   .btn-outline--footer {
     width: 220px;
     height: 50px;
@@ -86,5 +103,55 @@ import footerBg from '../assets/images/footer-bg.webp';
     height: 3px;
     border-radius: 2px;
     background: var(--chrome);
+  }
+
+  @media (min-width: 1024px) {
+    .footer {
+      padding: 112px var(--dt-gutter) 60px;
+      gap: 80px;
+    }
+
+    .footer__growth,
+    .footer__bar {
+      max-width: 1192px;
+      margin-inline: auto;
+    }
+
+    .footer__bar {
+      height: 121px;
+    }
+
+    .footer__bar-inner {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: min(987px, 100% - 96px);
+      margin-inline: auto;
+      height: 100%;
+      gap: 0;
+      padding: 0;
+    }
+
+    .footer__logo {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .footer__logo img {
+      width: 207px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .btn-outline--footer {
+      width: 200px;
+      height: 50px;
+      font-size: 16.8px;
+      flex: none;
+    }
+
+    .footer__divider {
+      display: none;
+    }
   }
 </style>

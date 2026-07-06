@@ -1,11 +1,24 @@
 ---
 import logo from '../assets/images/logo-lockup.png';
+
+const navLinks = [
+  { href: '#niches', label: 'Verticals' },
+  { href: '#channels', label: 'Traffic Sources' },
+  { href: '#contact', label: 'Contact' },
+];
 ---
 
 <header class="site-header">
   <a href="#top" class="site-header__logo" aria-label="Media UP - back to top">
     <img src={logo.src} width="150" height="26" alt="Media UP" />
   </a>
+
+  <nav class="site-header__nav" aria-label="Primary">
+    {navLinks.map((l) => <a href={l.href} class="chrome">{l.label}</a>)}
+  </nav>
+
+  <a href="#contact" class="btn-outline site-header__cta">Book a Consultation</a>
+
   <button
     type="button"
     class="burger"
@@ -42,6 +55,12 @@ import logo from '../assets/images/logo-lockup.png';
     object-fit: contain;
   }
 
+  /* Desktop-only chrome; hidden on mobile where the hamburger takes over. */
+  .site-header__nav,
+  .site-header__cta {
+    display: none;
+  }
+
   .burger {
     width: 44px;
     height: 44px;
@@ -67,6 +86,46 @@ import logo from '../assets/images/logo-lockup.png';
   @media (hover: hover) {
     .burger:hover span {
       background: #fff;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-header {
+      height: 98px;
+      padding: 22px var(--dt-gutter) 23px;
+    }
+
+    .site-header__logo img {
+      width: 207px;
+      height: 36px;
+    }
+
+    .site-header__nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .site-header__nav a {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13.6px;
+      letter-spacing: 0.14px;
+      line-height: 22.44px;
+      text-decoration: none;
+    }
+
+    .site-header__cta {
+      display: flex;
+      width: 200px;
+      height: 50px;
+      border-radius: var(--r-btn);
+      font-size: 16.8px;
+      flex: none;
+    }
+
+    .burger {
+      display: none;
     }
   }
 </style>

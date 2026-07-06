@@ -11,45 +11,47 @@ import Panel from './Panel.astro';
         performance across global markets.
       </p>
       <form class="cta__form" novalidate>
-        <div class="field">
-          <label for="cta-name" class="vh">Your name</label>
-          <input
-            id="cta-name"
-            name="name"
-            type="text"
-            placeholder="Your name"
-            autocomplete="name"
-            required
-            aria-describedby="cta-name-err"
-          />
-          <span id="cta-name-err" class="field__err" aria-live="polite"></span>
-        </div>
-        <div class="field">
-          <label for="cta-number" class="vh">Phone number</label>
-          <input
-            id="cta-number"
-            name="number"
-            type="tel"
-            inputmode="tel"
-            placeholder="Number"
-            autocomplete="tel"
-            required
-            aria-describedby="cta-number-err"
-          />
-          <span id="cta-number-err" class="field__err" aria-live="polite"></span>
-        </div>
-        <div class="field">
-          <label for="cta-telegram" class="vh">Telegram</label>
-          <input
-            id="cta-telegram"
-            name="telegram"
-            type="text"
-            placeholder="Telegram"
-            autocomplete="off"
-            required
-            aria-describedby="cta-telegram-err"
-          />
-          <span id="cta-telegram-err" class="field__err" aria-live="polite"></span>
+        <div class="cta__fields">
+          <div class="field">
+            <label for="cta-name" class="vh">Your name</label>
+            <input
+              id="cta-name"
+              name="name"
+              type="text"
+              placeholder="Your name"
+              autocomplete="name"
+              required
+              aria-describedby="cta-name-err"
+            />
+            <span id="cta-name-err" class="field__err" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="cta-number" class="vh">Phone number</label>
+            <input
+              id="cta-number"
+              name="number"
+              type="tel"
+              inputmode="tel"
+              placeholder="Number"
+              autocomplete="tel"
+              required
+              aria-describedby="cta-number-err"
+            />
+            <span id="cta-number-err" class="field__err" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="cta-telegram" class="vh">Telegram</label>
+            <input
+              id="cta-telegram"
+              name="telegram"
+              type="text"
+              placeholder="Telegram"
+              autocomplete="off"
+              required
+              aria-describedby="cta-telegram-err"
+            />
+            <span id="cta-telegram-err" class="field__err" aria-live="polite"></span>
+          </div>
         </div>
         <button type="submit" class="btn-cta">Send Inquiry</button>
         <p class="cta__status" role="status" aria-live="polite"></p>
@@ -96,6 +98,12 @@ import Panel from './Panel.astro';
     flex-direction: column;
     gap: 12px;
     padding-top: 12px;
+  }
+
+  .cta__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .cta__form input {
@@ -171,6 +179,63 @@ import Panel from './Panel.astro';
 
   .cta__status:empty {
     display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .cta {
+      padding: 80px 0;
+      scroll-margin-top: 24px;
+    }
+
+    .cta :global(.panel) {
+      width: min(1192px, 100% - 48px);
+      margin-inline: auto;
+    }
+
+    .cta__body {
+      padding: 93.5px 61px 85px;
+      gap: 15.3px;
+    }
+
+    .cta__title {
+      font-size: 35px;
+      letter-spacing: -1.14px;
+      line-height: 51px;
+    }
+
+    .cta__para {
+      font-size: 16.3px;
+      line-height: 28.56px;
+      max-width: 554px;
+    }
+
+    .cta__form {
+      max-width: 1070px;
+      align-items: center;
+      padding-top: 24.7px;
+    }
+
+    .cta__fields {
+      flex-direction: row;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .cta__fields .field {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cta__form input {
+      height: 54px;
+      padding: 15px 29px;
+    }
+
+    .btn-cta {
+      width: 328px;
+      height: 54px;
+      margin-top: 0;
+    }
   }
 </style>
 

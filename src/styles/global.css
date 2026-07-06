@@ -199,3 +199,19 @@ input::placeholder {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ============================================================
+   Desktop layer (>= 1024px) - reproduces the 1440px Landing layout,
+   fluid down to ~1024px. The mobile design is untouched below this.
+   Section content is centered at min(1192px, 100% - 48px); the header
+   gutter matches so header and content align at every width.
+   ============================================================ */
+:root {
+  --dt-gutter: clamp(24px, calc((100vw - 1192px) / 2), 124px);
+}
+
+@media (min-width: 1024px) {
+  .shell {
+    max-width: none;
+  }
+}

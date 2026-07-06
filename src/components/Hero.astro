@@ -11,18 +11,21 @@ import hero from '../assets/images/hero-graphic.png';
       <Picture
         src={hero}
         formats={['avif', 'webp']}
-        width={280}
-        height={280}
-        densities={[1, 2]}
+        width={560}
+        height={560}
+        widths={[280, 560, 840, 1024]}
+        sizes="(min-width: 1024px) 560px, 280px"
         alt=""
         priority
       />
     </div>
-    <h1 class="hero__title">Performance That Drives Real Growth</h1>
-    <p class="hero__sub">
-      Performance <span>agency that builds growth systems</span> through traffic,analytics, and
-      scalable advertising campaigns.
-    </p>
+    <div class="hero__text">
+      <h1 class="hero__title">Performance That Drives Real Growth</h1>
+      <p class="hero__sub">
+        Performance <span>agency that builds growth systems</span> through traffic,analytics, and
+        scalable advertising campaigns.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -63,6 +66,13 @@ import hero from '../assets/images/hero-graphic.png';
     gap: 22px;
   }
 
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+
   .hero__figure {
     line-height: 0;
   }
@@ -97,5 +107,59 @@ import hero from '../assets/images/hero-graphic.png';
 
   .hero__sub span {
     color: var(--text);
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      padding: 0 0 40px;
+      min-height: 780px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero__content {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      width: min(1192px, 100% - 48px);
+      margin-inline: auto;
+      padding-top: 98px;
+    }
+
+    .hero__text {
+      order: 1;
+      align-items: flex-start;
+      text-align: left;
+      gap: 24px;
+      max-width: 585px;
+    }
+
+    .hero__figure {
+      order: 2;
+      flex: none;
+    }
+
+    .hero__figure :global(img) {
+      width: clamp(360px, 38vw, 560px);
+      height: clamp(360px, 38vw, 560px);
+      -webkit-filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.55));
+      filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.55));
+    }
+
+    .hero__title {
+      font-size: clamp(56px, 6.25vw, 90px);
+      letter-spacing: -1.92px;
+      line-height: 0.98;
+      word-break: normal;
+      overflow-wrap: normal;
+    }
+
+    .hero__sub {
+      font-size: 18.4px;
+      line-height: 32.2px;
+      text-align: left;
+      max-width: 515px;
+    }
   }
 </style>

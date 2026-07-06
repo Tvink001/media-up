@@ -110,4 +110,62 @@ const { titleId, title, para, points } = Astro.props;
     line-height: 18px;
     color: var(--text);
   }
+
+  @media (min-width: 1024px) {
+    .checkpanel {
+      padding: 80px 0;
+    }
+
+    .checkpanel :global(.panel) {
+      width: min(1192px, 100% - 48px);
+      margin-inline: auto;
+    }
+
+    .checkpanel__body {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 81px 61px 86px;
+    }
+
+    .checkpanel__head {
+      flex: 1;
+      align-items: flex-start;
+      text-align: left;
+      gap: 15px;
+    }
+
+    .checkpanel__title {
+      font-size: 35px;
+      letter-spacing: -1.14px;
+      line-height: 51px;
+    }
+
+    .checkpanel__para {
+      font-size: 16.3px;
+      line-height: 28.56px;
+      max-width: 580px;
+    }
+
+    .checkpanel__list {
+      width: 400px;
+      flex: none;
+      gap: 15px;
+    }
+
+    .checkpanel__row {
+      padding: 19px 25px;
+    }
+
+    .checkpanel__check img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .checkpanel__text {
+      font-size: 15.5px;
+      line-height: 17.38px;
+    }
+  }
 </style>

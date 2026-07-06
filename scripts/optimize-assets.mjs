@@ -17,11 +17,11 @@ fs.mkdirSync(OUT, { recursive: true });
 
 // width = ~2x the largest on-screen size; withoutEnlargement keeps small icons native.
 const plan = {
-  'hero-graphic.png': { width: 560 },
-  'growth-reflection.png': { width: 720 },
+  'hero-graphic.png': { width: 1024 },
+  'growth-reflection.png': { width: 1192 },
   'logo-lockup.png': { width: 300 },
   'check-icon.png': { width: 78 },
-  'footer-bg.png': { width: 600, format: 'webp', quality: 58 },
+  'footer-bg.png': { width: 1024, format: 'webp', quality: 58 },
   'row-texture.png': { width: 480, format: 'webp', quality: 52 },
   'emoji-nutra.png': { width: 80 },
   'icon-education.png': { width: 120 },
