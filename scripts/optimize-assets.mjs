@@ -54,6 +54,33 @@ for (const [file, cfg] of Object.entries(plan)) {
   results.push({ file: outName, out: `${meta.width}x${meta.height}`, inKb, outKb });
 }
 
+// Bake the designer's cast shadow (Mask group) under the hero head, so the crisp
+// 1024 head keeps its resolution and the shadow sits exactly as in the mock.
+{
+  const heroPath = path.join(OUT, 'hero-graphic.png');
+  const maskPath = path.join(SRC, 'mask-shadow.png');
+  if (fs.existsSync(heroPath) && fs.existsSync(maskPath)) {
+    const head = await sharp(heroPath).toBuffer();
+    const shadow = await sharp(maskPath).resize({ width: 600 }).toBuffer();
+    await sharp({
+      create: { width: 1024, height: 1156, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
+    })
+      .composite([
+        { input: shadow, top: 1012, left: 194 },
+        { input: head, top: 0, left: 0 },
+      ])
+      .png({ compressionLevel: 9 })
+      .toFile(`${heroPath}.tmp`);
+    fs.renameSync(`${heroPath}.tmp`, heroPath);
+    results.push({
+      file: 'hero-graphic.png (+shadow)',
+      out: '1024x1156',
+      inKb: 0,
+      outKb: +(fs.statSync(heroPath).size / 1024).toFixed(1),
+    });
+  }
+}
+
 console.table(results);
 const totalOut = results.reduce((a, r) => a + (r.outKb || 0), 0);
 console.log(`optimized masters total: ${totalOut.toFixed(0)} KB`);

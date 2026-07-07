@@ -23,3 +23,6 @@ test-results/
 playwright-report/
 
 .vercel
+
+# reviewer reference images (local only)
+/*.png

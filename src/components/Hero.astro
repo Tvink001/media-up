@@ -4,15 +4,14 @@ import hero from '../assets/images/hero-graphic.png';
 ---
 
 <section class="hero" aria-label="Introduction">
-  <div class="hero__grid" aria-hidden="true"></div>
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="hero__content">
     <div class="hero__figure">
       <Picture
         src={hero}
         formats={['avif', 'webp']}
-        width={560}
-        height={560}
+        width={1024}
+        height={1156}
         widths={[280, 560, 840, 1024]}
         sizes="(min-width: 1024px) 560px, 280px"
         alt=""
@@ -34,16 +33,6 @@ import hero from '../assets/images/hero-graphic.png';
     position: relative;
     overflow: hidden;
     padding: 104px var(--gutter) 36px;
-  }
-
-  .hero__grid {
-    position: absolute;
-    inset: -22px -26px -10px -40px;
-    background-image:
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size: 46px 46px;
-    opacity: 0.6;
   }
 
   .hero__glow {
@@ -77,12 +66,10 @@ import hero from '../assets/images/hero-graphic.png';
     line-height: 0;
   }
 
+  /* The head keeps its 280px width; the baked cast shadow adds height below it. */
   .hero__figure :global(img) {
     width: 280px;
-    height: 280px;
-    object-fit: contain;
-    -webkit-filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.55));
-    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.55));
+    height: auto;
   }
 
   .hero__title {
@@ -112,9 +99,9 @@ import hero from '../assets/images/hero-graphic.png';
   @media (min-width: 1024px) {
     .hero {
       padding: 0 0 40px;
-      min-height: 780px;
+      min-height: 720px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .hero__content {
@@ -124,7 +111,7 @@ import hero from '../assets/images/hero-graphic.png';
       gap: 40px;
       width: min(1192px, 100% - 48px);
       margin-inline: auto;
-      padding-top: 98px;
+      padding-top: 104px;
     }
 
     .hero__text {
@@ -142,9 +129,7 @@ import hero from '../assets/images/hero-graphic.png';
 
     .hero__figure :global(img) {
       width: clamp(360px, 38vw, 560px);
-      height: clamp(360px, 38vw, 560px);
-      -webkit-filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.55));
-      filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.55));
+      height: auto;
     }
 
     .hero__title {
