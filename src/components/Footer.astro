@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import growth from '../assets/images/growth-reflection.png';
-import footerBg from '../assets/images/footer-bg.webp';
+import panelBg from '../assets/images/panel-bg.webp';
 import logo from '../assets/images/logo-lockup.png';
 ---
 
@@ -21,9 +21,9 @@ import logo from '../assets/images/logo-lockup.png';
   <div class="footer__bar">
     <img
       class="footer__bar-bg"
-      src={footerBg.src}
-      width={footerBg.width}
-      height={footerBg.height}
+      src={panelBg.src}
+      width={panelBg.width}
+      height={panelBg.height}
       alt=""
       aria-hidden="true"
       loading="lazy"
@@ -65,7 +65,7 @@ import logo from '../assets/images/logo-lockup.png';
     position: relative;
     border-radius: var(--r-card);
     overflow: hidden;
-    background: var(--card);
+    background: var(--panel-fill);
     border: 1px solid var(--hairline-06);
   }
 

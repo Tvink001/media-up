@@ -7,6 +7,7 @@
   /* Surfaces */
   --bg: #05070e;
   --card: #010141; /* niche & channel card fill */
+  --panel-fill: #121236; /* solid-panel fill under the bg.png texture */
   --panel-2: #101826; /* secondary card / row / pill fill */
 
   /* Text */

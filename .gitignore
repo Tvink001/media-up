@@ -26,3 +26,5 @@ playwright-report/
 
 # reviewer reference images (local only)
 /*.png
+/*.jpg
+/*.jpeg

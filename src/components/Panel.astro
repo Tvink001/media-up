@@ -1,5 +1,5 @@
 ---
-import texture from '../assets/images/row-texture.webp';
+import panelBg from '../assets/images/panel-bg.webp';
 
 interface Props {
   variant?: 'stats' | 'gold';
@@ -10,10 +10,10 @@ const { variant = 'gold', class: cls } = Astro.props;
 
 <div class:list={['panel', `panel--${variant}`, cls]}>
   <img
-    class="panel__tex"
-    src={texture.src}
-    width={texture.width}
-    height={texture.height}
+    class="panel__bg"
+    src={panelBg.src}
+    width={panelBg.width}
+    height={panelBg.height}
     alt=""
     aria-hidden="true"
     loading="lazy"
@@ -29,25 +29,23 @@ const { variant = 'gold', class: cls } = Astro.props;
     position: relative;
     border-radius: var(--r-panel);
     overflow: hidden;
+    background: var(--panel-fill);
   }
 
   .panel--stats {
-    background: var(--stats-grad);
     border: 1px solid var(--hairline-06);
   }
 
   .panel--gold {
-    background: var(--panel-grad);
     border: 1px solid var(--gold-border);
   }
 
-  .panel__tex {
+  .panel__bg {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.7;
     pointer-events: none;
   }
 
