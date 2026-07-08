@@ -67,7 +67,7 @@
   }
 
   .hero__figure {
-    width: 250px;
+    width: 285px;
     aspect-ratio: 1 / 1.16;
     line-height: 0;
   }
@@ -116,12 +116,12 @@
 
     .hero__content {
       flex-direction: row;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 40px;
       width: min(1192px, 100% - 48px);
       margin-inline: auto;
-      padding-top: 116px;
+      padding-top: 80px;
     }
 
     .hero__text {
@@ -130,12 +130,13 @@
       text-align: left;
       gap: 24px;
       max-width: 585px;
+      margin-top: 110px;
     }
 
     .hero__figure {
       order: 2;
       flex: none;
-      width: clamp(320px, 32vw, 430px);
+      width: clamp(360px, 36vw, 500px);
     }
 
     .hero__title {
