@@ -204,8 +204,21 @@ input::placeholder {
 
 @media (hover: hover) {
   .btn-outline:hover {
-    border-color: var(--hover-blue);
     color: var(--hover-blue);
+  }
+}
+
+/* Blue text highlight on hover for section headings and the metric numbers. */
+@media (hover: hover) {
+  main h2,
+  .stats__value {
+    transition: color 0.18s ease, -webkit-text-fill-color 0.18s ease;
+  }
+
+  main h2:hover,
+  .stats__value:hover {
+    color: var(--hover-blue);
+    -webkit-text-fill-color: var(--hover-blue);
   }
 }
 
