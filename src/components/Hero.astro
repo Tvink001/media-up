@@ -1,22 +1,26 @@
 ---
-import { Picture } from 'astro:assets';
-import hero from '../assets/images/hero-graphic.png';
+// The hero art-head is a looping, muted video. Safari receives the HEVC (.mov)
+// and every other browser the WEBM - the browser picks the first <source> whose
+// codec it can decode. A poster frame paints instantly so the first render isn't
+// blocked by the video download.
 ---
 
 <section class="hero" aria-label="Introduction">
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="hero__content">
-    <div class="hero__figure">
-      <Picture
-        src={hero}
-        formats={['avif', 'webp']}
-        width={1024}
-        height={1156}
-        widths={[280, 560, 840, 1024]}
-        sizes="(min-width: 1024px) 560px, 280px"
-        alt=""
-        priority
-      />
+    <div class="hero__figure" aria-hidden="true">
+      <video
+        class="hero__video"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        poster="/hero/head-poster.webp"
+      >
+        <source src="/hero/head.mp4" type='video/mp4; codecs="hvc1"' />
+        <source src="/hero/head.webm" type="video/webm" />
+      </video>
     </div>
     <div class="hero__text">
       <h1 class="hero__title">Performance That Drives Real Growth</h1>
@@ -63,13 +67,19 @@ import hero from '../assets/images/hero-graphic.png';
   }
 
   .hero__figure {
+    width: 300px;
+    aspect-ratio: 1 / 1.14;
     line-height: 0;
   }
 
-  /* The head keeps its 280px width; the baked cast shadow adds height below it. */
-  .hero__figure :global(img) {
-    width: 280px;
-    height: auto;
+  /* Fit the portrait clip to the head and feather the dark edges into the page. */
+  .hero__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 44%;
+    -webkit-mask-image: radial-gradient(ellipse 68% 60% at 50% 46%, #000 50%, transparent 84%);
+    mask-image: radial-gradient(ellipse 68% 60% at 50% 46%, #000 50%, transparent 84%);
   }
 
   .hero__title {
@@ -125,11 +135,7 @@ import hero from '../assets/images/hero-graphic.png';
     .hero__figure {
       order: 2;
       flex: none;
-    }
-
-    .hero__figure :global(img) {
-      width: clamp(360px, 38vw, 560px);
-      height: auto;
+      width: clamp(400px, 42vw, 600px);
     }
 
     .hero__title {

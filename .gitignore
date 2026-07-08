@@ -28,3 +28,8 @@ playwright-report/
 /*.png
 /*.jpg
 /*.jpeg
+
+# reviewer reference source folders (local only)
+/screenshots/
+/animations/
+/favicon/

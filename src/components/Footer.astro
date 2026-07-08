@@ -1,21 +1,18 @@
 ---
-import { Picture } from 'astro:assets';
-import growth from '../assets/images/growth-reflection.png';
+import growth from '../assets/images/growth-reflection.webp';
 import panelBg from '../assets/images/panel-bg.webp';
 import logo from '../assets/images/logo-lockup.png';
 ---
 
 <footer class="footer">
   <div class="footer__growth">
-    <Picture
-      src={growth}
-      formats={['avif', 'webp']}
-      width={1192}
-      height={372}
-      widths={[720, 1192]}
-      sizes="(min-width: 1024px) 1192px, 100vw"
+    <img
+      src={growth.src}
+      width={growth.width}
+      height={growth.height}
       alt="Growth"
       loading="lazy"
+      decoding="async"
     />
   </div>
   <div class="footer__bar">

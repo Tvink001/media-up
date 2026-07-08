@@ -17,8 +17,7 @@ fs.mkdirSync(OUT, { recursive: true });
 
 // width = ~2x the largest on-screen size; withoutEnlargement keeps small icons native.
 const plan = {
-  'hero-graphic.png': { width: 1024 },
-  'growth-reflection.png': { width: 1192 },
+  'growth-reflection.png': { width: 1192, format: 'webp', quality: 82 },
   'logo-lockup.png': { width: 300 },
   'check-icon.png': { width: 78 },
   'panel-bg.png': { width: 1200, format: 'webp', quality: 74 },
@@ -51,33 +50,6 @@ for (const [file, cfg] of Object.entries(plan)) {
   const outKb = +(fs.statSync(outPath).size / 1024).toFixed(1);
   const meta = await sharp(outPath).metadata();
   results.push({ file: outName, out: `${meta.width}x${meta.height}`, inKb, outKb });
-}
-
-// Bake the designer's cast shadow (Mask group) under the hero head, so the crisp
-// 1024 head keeps its resolution and the shadow sits exactly as in the mock.
-{
-  const heroPath = path.join(OUT, 'hero-graphic.png');
-  const maskPath = path.join(SRC, 'mask-shadow.png');
-  if (fs.existsSync(heroPath) && fs.existsSync(maskPath)) {
-    const head = await sharp(heroPath).toBuffer();
-    const shadow = await sharp(maskPath).resize({ width: 600 }).toBuffer();
-    await sharp({
-      create: { width: 1024, height: 1156, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
-    })
-      .composite([
-        { input: shadow, top: 1012, left: 194 },
-        { input: head, top: 0, left: 0 },
-      ])
-      .png({ compressionLevel: 9 })
-      .toFile(`${heroPath}.tmp`);
-    fs.renameSync(`${heroPath}.tmp`, heroPath);
-    results.push({
-      file: 'hero-graphic.png (+shadow)',
-      out: '1024x1156',
-      inKb: 0,
-      outKb: +(fs.statSync(heroPath).size / 1024).toFixed(1),
-    });
-  }
 }
 
 console.table(results);

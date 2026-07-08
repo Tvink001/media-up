@@ -113,6 +113,7 @@ const navLinks = [
       letter-spacing: 0.14px;
       line-height: 22.44px;
       text-decoration: none;
+      transition: color 0.18s ease, -webkit-text-fill-color 0.18s ease;
     }
 
     .site-header__cta {
@@ -126,6 +127,14 @@ const navLinks = [
 
     .burger {
       display: none;
+    }
+  }
+
+  /* Blue highlight on hover (matches the reference site). */
+  @media (hover: hover) {
+    .site-header__nav a:hover {
+      color: var(--hover-blue);
+      -webkit-text-fill-color: var(--hover-blue);
     }
   }
 </style>

@@ -17,6 +17,7 @@
   --cta-ink: #150e00; /* dark ink on the mint->lavender button */
   --field-border: #e5e8dc;
   --white: #ffffff;
+  --hover-blue: #1e21ef; /* nav / button hover accent (reference GrowthForge) */
 
   /* Hairlines & accents */
   --hairline: rgba(255, 255, 255, 0.04);
@@ -82,6 +83,31 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* Dark scrollbar tuned to the page background. */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #1b2545 var(--bg);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1b2545;
+  border: 3px solid var(--bg);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #26325c;
 }
 
 h1,
@@ -173,12 +199,13 @@ input::placeholder {
   font-family: var(--font-head);
   font-weight: 700;
   letter-spacing: 0.2px;
-  transition: background-color 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 @media (hover: hover) {
   .btn-outline:hover {
-    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--hover-blue);
+    color: var(--hover-blue);
   }
 }
 
