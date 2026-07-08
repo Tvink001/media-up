@@ -1,28 +1,22 @@
 ---
-// The hero art-head is a looping, muted video that sits in the exact box the
-// static art-head used to occupy (the old 1024x1156 graphic's aspect ratio).
-// Safari receives the HEVC (.mov) and every other browser the WEBM. The clip
-// carries a dark backing, so a radial mask feathers its edges into the page the
-// way the old transparent PNG did, and a poster frame paints instantly so the
-// first render isn't blocked by the video download.
+import { Picture } from 'astro:assets';
+import hero from '../assets/images/hero-graphic.png';
 ---
 
 <section class="hero" aria-label="Introduction">
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="hero__content">
-    <div class="hero__figure" aria-hidden="true">
-      <video
-        class="hero__video"
-        autoplay
-        loop
-        muted
-        playsinline
-        preload="metadata"
-        poster="/hero/head-poster.webp"
-      >
-        <source src="/hero/head.mp4" type='video/mp4; codecs="hvc1"' />
-        <source src="/hero/head.webm" type="video/webm" />
-      </video>
+    <div class="hero__figure">
+      <Picture
+        src={hero}
+        formats={['avif', 'webp']}
+        width={1024}
+        height={1156}
+        widths={[280, 560, 840, 1024]}
+        sizes="(min-width: 1024px) 560px, 280px"
+        alt=""
+        priority
+      />
     </div>
     <div class="hero__text">
       <h1 class="hero__title">Performance That Drives Real Growth</h1>
@@ -68,27 +62,14 @@
     gap: 22px;
   }
 
-  /* The figure reproduces the on-screen box the static art-head filled: same
-     280px width and the old graphic's 1024:1156 aspect. The video is absolutely
-     positioned so its intrinsic (portrait) height can't stretch the box, and
-     cover-fitted so the head lands at yesterday's size and place. */
   .hero__figure {
-    position: relative;
-    width: 280px;
-    aspect-ratio: 1024 / 1156;
-    overflow: hidden;
     line-height: 0;
   }
 
-  .hero__video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 58%;
-    -webkit-mask-image: radial-gradient(ellipse 72% 60% at 50% 45%, #000 52%, transparent 84%);
-    mask-image: radial-gradient(ellipse 72% 60% at 50% 45%, #000 52%, transparent 84%);
+  /* The head keeps its 280px width; the baked cast shadow adds height below it. */
+  .hero__figure :global(img) {
+    width: 280px;
+    height: auto;
   }
 
   .hero__title {
@@ -144,7 +125,11 @@
     .hero__figure {
       order: 2;
       flex: none;
+    }
+
+    .hero__figure :global(img) {
       width: clamp(360px, 38vw, 560px);
+      height: auto;
     }
 
     .hero__title {
