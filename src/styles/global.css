@@ -39,15 +39,22 @@
     rgb(249, 250, 251) 71%,
     rgb(165, 188, 210) 93%
   );
-  --panel-grad: linear-gradient(-4deg, #070e20 13%, #101e4b 86%);
+  --panel-grad: linear-gradient(341deg, #070e20 12.59%, #101e4b 86.43%);
   --panel-border: #4b66a2;
   --card-grad: linear-gradient(0deg, #02001c 9%, #0d01ac 248%);
   --card-border: #4b66a2;
   --card-border-soft: #8ba0ca;
   --card-stroke: linear-gradient(180deg, #4b66a2 0%, rgba(23, 31, 54, 0.52) 100%);
-  --chip-grad: linear-gradient(180deg, #10141c 0%, #0a0d13 100%);
-  --chip-shadow: -2px 0 8px 0 #0c0f18, 0 -4px 14.7px 0 #0c0f18, 0 2px 4.8px 0 rgba(0, 0, 0, 0.75),
-    0 15px 17px 0 #0c0f18;
+  --dark-stroke: linear-gradient(
+    180deg,
+    #8ba0ca -47.39%,
+    #899cc7 2.96%,
+    rgba(83, 96, 123, 0.27) 19.2%,
+    #0c0f18 103.04%
+  );
+  --chip-grad: linear-gradient(180deg, #11151e 0%, #090b0f 100%);
+  --chip-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25), -2px 0 8px 0 #0c0f18, 0 -4px 14.7px 0 #0c0f18,
+    0 2px 4.8px 0 rgba(0, 0, 0, 0.75), 0 15px 17px 0 #0c0f18;
   --icon-blue: #1d316c;
   --cta-grad: linear-gradient(-67deg, rgb(189, 255, 234) 37.7%, rgb(195, 185, 255) 66.4%);
 

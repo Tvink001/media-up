@@ -37,8 +37,26 @@ import hero from '../assets/images/hero-graphic.png';
     padding: 104px var(--gutter) 36px;
   }
 
-  .hero__orb-head,
+  .hero__orb-head {
+    width: 661px;
+    height: 661px;
+    right: -181px;
+    top: -216px;
+    border-radius: 340px;
+    background: radial-gradient(
+      70.71% 70.71% at 50% 50%,
+      rgba(30, 65, 170, 0.22) 0%,
+      rgba(30, 65, 170, 0) 68%
+    );
+    -webkit-filter: blur(45px);
+    filter: blur(45px);
+  }
+
   .hero__orb-left {
+    width: 770px;
+    height: 770px;
+    left: calc(50% - 824px);
+    top: 446px;
     transform: translate(-50%, -50%);
     background: radial-gradient(
       circle closest-side,
@@ -47,20 +65,6 @@ import hero from '../assets/images/hero-graphic.png';
       rgba(30, 65, 170, 0.08) 56%,
       rgba(30, 65, 170, 0) 80%
     );
-  }
-
-  .hero__orb-head {
-    width: 716px;
-    height: 716px;
-    left: calc(50% + 576px);
-    top: 112px;
-  }
-
-  .hero__orb-left {
-    width: 770px;
-    height: 770px;
-    left: calc(50% - 824px);
-    top: 446px;
   }
 
   .hero__oval {
