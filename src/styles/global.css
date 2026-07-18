@@ -45,7 +45,7 @@
   --card-border: #4b66a2;
   --card-border-soft: #8ba0ca;
   --card-stroke: linear-gradient(180deg, #4b66a2 0%, rgba(23, 31, 54, 0.52) 100%);
-  --chip-grad: linear-gradient(180deg, #11151e 0%, #090b0f 100%);
+  --chip-grad: linear-gradient(180deg, #10141c 0%, #0a0d13 100%);
   --chip-shadow: -2px 0 8px 0 #0c0f18, 0 -4px 14.7px 0 #0c0f18, 0 2px 4.8px 0 rgba(0, 0, 0, 0.75),
     0 15px 17px 0 #0c0f18;
   --icon-blue: #1d316c;
