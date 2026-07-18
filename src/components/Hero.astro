@@ -39,18 +39,27 @@ import hero from '../assets/images/hero-graphic.png';
 
   .hero__orb-head,
   .hero__orb-left {
-    width: 661px;
-    height: 661px;
     transform: translate(-50%, -50%);
+    background: radial-gradient(
+      circle closest-side,
+      rgba(30, 65, 170, 0.4) 0%,
+      rgba(30, 65, 170, 0.22) 30%,
+      rgba(30, 65, 170, 0.08) 56%,
+      rgba(30, 65, 170, 0) 80%
+    );
   }
 
   .hero__orb-head {
-    left: calc(50% + 570px);
-    top: 115px;
+    width: 716px;
+    height: 716px;
+    left: calc(50% + 576px);
+    top: 112px;
   }
 
   .hero__orb-left {
-    left: calc(50% - 734px);
+    width: 770px;
+    height: 770px;
+    left: calc(50% - 824px);
     top: 446px;
   }
 
