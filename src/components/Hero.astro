@@ -12,10 +12,10 @@ import hero from '../assets/images/hero-graphic.png';
       <Picture
         src={hero}
         formats={['avif', 'webp']}
-        width={1024}
-        height={1156}
-        widths={[280, 560, 840, 1024]}
-        sizes="(min-width: 1024px) 560px, 280px"
+        width={676}
+        height={764}
+        widths={[320, 640, 960, 1352]}
+        sizes="(min-width: 1024px) 640px, 320px"
         alt=""
         priority
       />
@@ -79,9 +79,8 @@ import hero from '../assets/images/hero-graphic.png';
     line-height: 0;
   }
 
-  /* The head keeps its 280px width; the baked cast shadow adds height below it. */
   .hero__figure :global(img) {
-    width: 280px;
+    width: 320px;
     height: auto;
   }
 
@@ -141,7 +140,7 @@ import hero from '../assets/images/hero-graphic.png';
     }
 
     .hero__figure :global(img) {
-      width: clamp(360px, 38vw, 560px);
+      width: clamp(400px, 46vw, 640px);
       height: auto;
     }
 
