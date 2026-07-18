@@ -1,19 +1,25 @@
 ---
-import { niches } from '../data/content';
-import education from '../assets/images/icon-education.png';
-import finance from '../assets/images/icon-finance.png';
-import nutra from '../assets/images/emoji-nutra.png';
-import saas from '../assets/images/icon-saas.png';
-import leadgen from '../assets/images/icon-leadgen.png';
+import { Image } from 'astro:assets';
+import { niches, type NicheIconKey } from '../data/content';
+import education from '../assets/images/niche-education.png';
+import finance from '../assets/images/niche-finance.png';
+import nutra from '../assets/images/niche-nutra.png';
+import saas from '../assets/images/niche-saas.png';
+import crypto from '../assets/images/niche-crypto.png';
+import igaming from '../assets/images/niche-igaming.png';
+import mainstream from '../assets/images/niche-mainstream.png';
+import leadgen from '../assets/images/niche-leadgen.png';
 
-// Raster niche icons: display size + the design's per-card optical left offset.
-const imageMap = {
-  education: { src: education.src, w: 84, h: 72, ml: -8 },
-  finance: { src: finance.src, w: 24, h: 34, ml: 0 },
-  nutra: { src: nutra.src, w: 40, h: 40, ml: -1 },
-  saas: { src: saas.src, w: 51, h: 51, ml: -2 },
-  leadgen: { src: leadgen.src, w: 49, h: 51, ml: -3 },
-} as const;
+const icons: Record<NicheIconKey, ImageMetadata> = {
+  education,
+  finance,
+  nutra,
+  saas,
+  crypto,
+  igaming,
+  mainstream,
+  leadgen,
+};
 ---
 
 <section id="niches" class="niches" aria-labelledby="niches-title">
@@ -28,31 +34,16 @@ const imageMap = {
       {
         niches.map((n) => (
           <li class="niche">
-            <div
-              class="niche__icon"
-              aria-hidden="true"
-              style={`margin-left:${n.icon.kind === 'image' ? imageMap[n.icon.key].ml : -3}px`}
-            >
-              {n.icon.kind === 'image' ? (
-                <img
-                  src={imageMap[n.icon.key].src}
-                  width={imageMap[n.icon.key].w}
-                  height={imageMap[n.icon.key].h}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <span class:list={['niche__glyph', { 'niche__glyph--head': n.icon.head }]}>
-                  {n.icon.char}
-                </span>
-              )}
+            <span class="niche__icon" aria-hidden="true">
+              <Image src={icons[n.icon]} width={160} height={90} alt="" loading="lazy" />
+            </span>
+            <div class="niche__head">
+              <h3 class="niche__title">{n.title}</h3>
+              <p class="niche__desc">{n.desc}</p>
             </div>
-            <h3 class="niche__title">{n.title}</h3>
-            <p class="niche__desc">{n.desc}</p>
-            <div class="niche__tag">
+            <span class="niche__tag">
               <span class="chrome">{n.tag}</span>
-            </div>
+            </span>
           </li>
         ))
       }
@@ -103,68 +94,74 @@ const imageMap = {
   }
 
   .niche {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    background: var(--card);
-    border: 1px solid var(--hairline);
-    border-radius: var(--r-card);
-    padding: 28px 25px;
+    justify-content: space-between;
+    gap: 20px;
+    background: var(--card-grad);
+    border: 2px solid var(--card-border);
+    border-radius: 22.7px;
+    padding: 104px 30px 30px;
+    overflow: hidden;
   }
 
   .niche__icon {
-    min-height: 80px;
+    position: absolute;
+    top: 30px;
+    right: 28px;
+    width: 74px;
+    height: 60px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: center;
   }
 
-  .niche__icon img {
+  .niche__icon :global(img) {
+    width: 100%;
+    height: auto;
     object-fit: contain;
   }
 
-  .niche__glyph {
-    font-size: 52px;
-    line-height: 50px;
-  }
-
-  .niche__glyph--head {
-    font-family: var(--font-head);
-    color: var(--text);
-    letter-spacing: 0.9px;
-    line-height: 1;
+  .niche__head {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .niche__title {
     font-family: var(--font-head);
-    font-weight: 700;
-    font-size: 16.8px;
-    line-height: 18.82px;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.2;
     color: var(--text);
   }
 
   .niche__desc {
     font-family: var(--font-body);
     font-weight: 400;
-    font-size: 13.3px;
-    line-height: 21.51px;
-    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .niche__tag {
     align-self: flex-start;
-    background: var(--pill-fill);
-    border-radius: var(--r-pill);
-    padding: 2.5px 10px;
-    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    background: var(--icon-blue);
+    border-radius: 7.568px;
+    height: 28px;
+    padding: 0 9px;
   }
 
   .niche__tag span {
     font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.773px;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.7px;
     text-transform: uppercase;
-    line-height: 18.22px;
+    line-height: 1;
   }
 
   @media (min-width: 1024px) {
@@ -201,20 +198,13 @@ const imageMap = {
     }
 
     .niche {
-      min-height: 258px;
-      padding: 31px 25px;
+      min-height: 288px;
+      padding: 136px 30px 30px;
     }
 
     .niche__icon {
-      min-height: 88px;
-    }
-
-    .niche__desc {
-      flex: 1;
-    }
-
-    .niche__tag {
-      margin-top: 0;
+      top: 38px;
+      right: 34px;
     }
   }
 </style>

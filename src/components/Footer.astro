@@ -1,6 +1,5 @@
 ---
 import growth from '../assets/images/growth-reflection.webp';
-import panelBg from '../assets/images/panel-bg.webp';
 import logo from '../assets/images/logo-lockup.png';
 ---
 
@@ -16,16 +15,6 @@ import logo from '../assets/images/logo-lockup.png';
     />
   </div>
   <div class="footer__bar">
-    <img
-      class="footer__bar-bg"
-      src={panelBg.src}
-      width={panelBg.width}
-      height={panelBg.height}
-      alt=""
-      aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-    />
     <div class="footer__bar-inner">
       <a href="#top" class="footer__logo" aria-label="Media UP - back to top">
         <img src={logo.src} width="207" height="36" alt="Media UP" />
@@ -60,19 +49,10 @@ import logo from '../assets/images/logo-lockup.png';
   .footer__bar {
     width: 100%;
     position: relative;
-    border-radius: var(--r-card);
+    border-radius: 20px;
     overflow: hidden;
-    background: var(--panel-fill);
-    border: 1px solid var(--hairline-06);
-  }
-
-  .footer__bar-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
+    background: var(--panel-grad);
+    border: 2px solid var(--panel-border);
   }
 
   .footer__bar-inner {

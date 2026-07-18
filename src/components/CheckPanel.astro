@@ -1,6 +1,5 @@
 ---
 import Panel from './Panel.astro';
-import checkIcon from '../assets/images/check-icon.png';
 
 interface Props {
   titleId: string;
@@ -9,6 +8,7 @@ interface Props {
   points: string[];
 }
 const { titleId, title, para, points } = Astro.props;
+const gradId = `cpu-${titleId}`;
 ---
 
 <section class="checkpanel" aria-labelledby={titleId}>
@@ -19,12 +19,34 @@ const { titleId, title, para, points } = Astro.props;
         <p class="checkpanel__para">{para}</p>
       </div>
       <ul class="checkpanel__list">
+        <svg class="checkpanel__grad" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id={gradId} x1="2" y1="2" x2="23" y2="2.4" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#636eb7"></stop>
+              <stop offset="0.32" stop-color="#fdfdfe"></stop>
+              <stop offset="0.48" stop-color="#afbcd8"></stop>
+              <stop offset="0.75" stop-color="#bac7dd"></stop>
+              <stop offset="0.88" stop-color="#616db6"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
         {
           points.map((p) => (
             <li class="checkpanel__row">
-              <span class="checkpanel__check" aria-hidden="true">
-                <img src={checkIcon.src} width="26" height="26" alt="" loading="lazy" decoding="async" />
-              </span>
+              <svg
+                class="checkpanel__icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke={`url(#${gradId})`}
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="4" y="4" width="16" height="16" rx="2" />
+                <rect x="9" y="9" width="6" height="6" />
+                <path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2" />
+              </svg>
               <span class="checkpanel__text">{p}</span>
             </li>
           ))
@@ -77,36 +99,34 @@ const { titleId, title, para, points } = Astro.props;
     gap: 12px;
   }
 
+  .checkpanel__grad {
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
   .checkpanel__row {
     display: flex;
-    gap: 8px;
+    gap: 14px;
     align-items: center;
-    background: var(--panel-2);
-    border: 1px solid var(--hairline);
+    background: var(--chip-grad);
+    border: 2px solid var(--card-border-soft);
     border-radius: var(--r-card);
-    padding: 16px 20px;
+    padding: 18px 22px;
+    box-shadow: var(--chip-shadow), inset 0 4px 4px rgba(0, 0, 0, 0.25);
   }
 
-  .checkpanel__check {
+  .checkpanel__icon {
     flex: none;
-    width: 35.4px;
-    height: 35.4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .checkpanel__check img {
-    width: 26px;
-    height: 26px;
-    object-fit: contain;
+    width: 28px;
+    height: 28px;
   }
 
   .checkpanel__text {
     flex: 1;
     font-family: var(--font-head);
     font-weight: 700;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 18px;
     color: var(--text);
   }
@@ -126,7 +146,7 @@ const { titleId, title, para, points } = Astro.props;
       align-items: center;
       justify-content: space-between;
       gap: 40px;
-      padding: 81px 61px 86px;
+      padding: 82px 62px 87px;
     }
 
     .checkpanel__head {
@@ -155,12 +175,13 @@ const { titleId, title, para, points } = Astro.props;
     }
 
     .checkpanel__row {
-      padding: 19px 25px;
+      gap: 16px;
+      padding: 20px 26px;
     }
 
-    .checkpanel__check img {
-      width: 28px;
-      height: 28px;
+    .checkpanel__icon {
+      width: 30px;
+      height: 30px;
     }
 
     .checkpanel__text {

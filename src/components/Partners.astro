@@ -11,7 +11,7 @@ import { partners } from '../data/content';
     </p>
   </header>
   <div class="partners__viewport">
-    <ul class="partners__track" data-marquee>
+    <ul class="partners__track">
       {
         partners.map((p) => (
           <li class="chip">
@@ -24,7 +24,7 @@ import { partners } from '../data/content';
       }
       {
         partners.map((p) => (
-          <li class="chip" aria-hidden="true">
+          <li class="chip chip--dupe" aria-hidden="true">
             <span class="chip__icon">{p.icon}</span>
             <span class="chip__name">{p.name}</span>
           </li>
@@ -84,39 +84,35 @@ import { partners } from '../data/content';
 
   .partners__track {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     width: max-content;
-    animation: muMarquee 34s linear infinite;
+    animation: muMarquee 40s linear infinite;
   }
 
   .chip {
     display: flex;
-    gap: 10px;
+    gap: 9px;
     align-items: center;
-    background: var(--card);
-    border: 1px solid var(--hairline);
-    border-radius: var(--r-pill);
+    background: var(--card-grad);
+    border: 1px solid var(--card-border);
+    border-radius: 32px;
     padding: 11px 20px;
     white-space: nowrap;
   }
 
   .chip__icon {
-    width: 22px;
-    height: 22px;
-    border-radius: 5px;
-    background: var(--gold-tile);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .chip__name {
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 13.5px;
-    line-height: 22.31px;
-    color: var(--muted);
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #d5ddf0;
   }
 
   @keyframes muMarquee {
@@ -150,13 +146,28 @@ import { partners } from '../data/content';
       line-height: 28px;
     }
 
+    .partners__viewport {
+      width: min(1192px, 100% - 48px);
+      overflow: visible;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
     .partners__track {
-      gap: 20px;
-      animation-duration: 38s;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: auto;
+      gap: 16px;
+      animation: none;
+      transform: none;
     }
 
     .chip {
-      padding: 12px 21px;
+      padding: 12px 22px;
+    }
+
+    .chip--dupe {
+      display: none;
     }
   }
 </style>

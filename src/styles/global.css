@@ -39,8 +39,15 @@
     rgb(249, 250, 251) 71%,
     rgb(165, 188, 210) 93%
   );
-  --panel-grad: linear-gradient(141deg, #0d1630 0%, #09112a 100%);
-  --stats-grad: linear-gradient(120deg, #0d1630 11%, #09112a 109%);
+  --panel-grad: linear-gradient(-4deg, #070e20 13%, #101e4b 86%);
+  --panel-border: #4b66a2;
+  --card-grad: linear-gradient(0deg, #02001c 9%, #0d01ac 248%);
+  --card-border: #4b66a2;
+  --card-border-soft: #8ba0ca;
+  --chip-grad: linear-gradient(180deg, #11151e 0%, #090b0f 100%);
+  --chip-shadow: -2px 0 8px 0 #0c0f18, 0 -4px 14.7px 0 #0c0f18, 0 2px 4.8px 0 rgba(0, 0, 0, 0.75),
+    0 15px 17px 0 #0c0f18;
+  --icon-blue: #1d316c;
   --cta-grad: linear-gradient(-67deg, rgb(189, 255, 234) 37.7%, rgb(195, 185, 255) 66.4%);
 
   /* Radii */

@@ -1,6 +1,4 @@
 ---
-import panelBg from '../assets/images/panel-bg.webp';
-
 interface Props {
   variant?: 'stats' | 'gold';
   class?: string;
@@ -9,16 +7,6 @@ const { variant = 'gold', class: cls } = Astro.props;
 ---
 
 <div class:list={['panel', `panel--${variant}`, cls]}>
-  <img
-    class="panel__bg"
-    src={panelBg.src}
-    width={panelBg.width}
-    height={panelBg.height}
-    alt=""
-    aria-hidden="true"
-    loading="lazy"
-    decoding="async"
-  />
   <div class="panel__inner">
     <slot />
   </div>
@@ -29,24 +17,8 @@ const { variant = 'gold', class: cls } = Astro.props;
     position: relative;
     border-radius: var(--r-panel);
     overflow: hidden;
-    background: var(--panel-fill);
-  }
-
-  .panel--stats {
-    border: 1px solid var(--hairline-06);
-  }
-
-  .panel--gold {
-    border: 1px solid var(--gold-border);
-  }
-
-  .panel__bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
+    background: var(--panel-grad);
+    border: 2px solid var(--panel-border);
   }
 
   .panel__inner {
