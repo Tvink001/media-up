@@ -5,6 +5,8 @@ import hero from '../assets/images/hero-graphic.png';
 
 <section class="hero" aria-label="Introduction">
   <div class="hero__glow" aria-hidden="true"></div>
+  <span class="orb hero__orb-a" aria-hidden="true"></span>
+  <span class="orb hero__orb-b" aria-hidden="true"></span>
   <div class="hero__content">
     <div class="hero__figure">
       <Picture
@@ -47,8 +49,19 @@ import hero from '../assets/images/hero-graphic.png';
     background: radial-gradient(circle at center, var(--glow-core) 0%, rgba(30, 65, 170, 0) 68%);
   }
 
+  .hero__orb-a {
+    top: -120px;
+    left: -240px;
+  }
+
+  .hero__orb-b {
+    top: 26%;
+    right: -280px;
+  }
+
   .hero__content {
     position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;

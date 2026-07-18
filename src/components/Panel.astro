@@ -17,8 +17,10 @@ const { variant = 'gold', class: cls } = Astro.props;
     position: relative;
     border-radius: var(--r-panel);
     overflow: hidden;
-    background: var(--panel-grad);
-    border: 2px solid var(--panel-border);
+    border: 2px solid transparent;
+    background:
+      var(--panel-grad) padding-box,
+      var(--card-stroke) border-box;
   }
 
   .panel__inner {

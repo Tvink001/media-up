@@ -147,25 +147,26 @@ import Panel from './Panel.astro';
 
   .btn-cta {
     width: 100%;
-    height: 52px;
-    border: none;
-    border-radius: var(--r-card);
+    height: 54px;
+    border: 1px solid var(--card-border-soft);
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 4px;
-    background: var(--cta-grad);
+    background: var(--chip-grad);
+    box-shadow: var(--chip-shadow), inset 0 4px 4px rgba(0, 0, 0, 0.25);
     font-family: var(--font-head);
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 0.14px;
-    color: var(--cta-ink);
-    transition: filter 0.2s ease;
+    color: var(--white);
+    transition: border-color 0.2s ease, filter 0.2s ease;
   }
 
   @media (hover: hover) {
     .btn-cta:hover {
-      filter: brightness(1.05);
+      filter: brightness(1.12);
     }
   }
 
