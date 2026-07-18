@@ -4,9 +4,9 @@ import hero from '../assets/images/hero-graphic.png';
 ---
 
 <section class="hero" aria-label="Introduction">
-  <div class="hero__glow" aria-hidden="true"></div>
-  <span class="orb hero__orb-a" aria-hidden="true"></span>
-  <span class="orb hero__orb-b" aria-hidden="true"></span>
+  <span class="orb hero__orb-head" aria-hidden="true"></span>
+  <span class="orb hero__orb-left" aria-hidden="true"></span>
+  <span class="hero__oval" aria-hidden="true"></span>
   <div class="hero__content">
     <div class="hero__figure">
       <Picture
@@ -37,26 +37,39 @@ import hero from '../assets/images/hero-graphic.png';
     padding: 104px var(--gutter) 36px;
   }
 
-  .hero__glow {
+  .hero__orb-head,
+  .hero__orb-left {
+    width: 661px;
+    height: 661px;
+    transform: translate(-50%, -50%);
+  }
+
+  .hero__orb-head {
+    left: calc(50% + 570px);
+    top: 115px;
+  }
+
+  .hero__orb-left {
+    left: calc(50% - 734px);
+    top: 446px;
+  }
+
+  .hero__oval {
     position: absolute;
-    top: -200px;
-    right: -200px;
-    width: 520px;
-    height: 520px;
-    border-radius: 260px;
-    -webkit-filter: blur(45px);
-    filter: blur(45px);
-    background: radial-gradient(circle at center, var(--glow-core) 0%, rgba(30, 65, 170, 0) 68%);
-  }
-
-  .hero__orb-a {
-    top: -120px;
-    left: -240px;
-  }
-
-  .hero__orb-b {
-    top: 26%;
-    right: -280px;
+    z-index: 0;
+    pointer-events: none;
+    width: 210px;
+    height: 280px;
+    left: calc(50% - 68px);
+    top: 465px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(
+      ellipse closest-side,
+      rgba(62, 114, 236, 0.16) 0%,
+      rgba(62, 114, 236, 0.05) 50%,
+      rgba(62, 114, 236, 0) 75%
+    );
   }
 
   .hero__content {
