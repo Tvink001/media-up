@@ -116,8 +116,19 @@ const links = [
   .btn-outline--menu {
     width: 100%;
     height: 54px;
+    border: 1px solid transparent;
     border-radius: 27px;
+    background:
+      var(--chip-grad) padding-box,
+      var(--dark-stroke) border-box;
+    box-shadow: var(--chip-shadow);
     font-size: 16.8px;
+  }
+
+  @media (hover: hover) {
+    .btn-outline--menu:hover {
+      color: var(--white);
+    }
   }
 </style>
 
