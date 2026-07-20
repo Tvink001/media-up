@@ -3,7 +3,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 // Static, content-focused marketing page. Zero client framework runtime:
 // the small amount of interactivity ships as a single vanilla-JS island.
 export default defineConfig({
-  site: 'https://media-up.local',
+  site: 'https://media-up.pages.dev',
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto',
