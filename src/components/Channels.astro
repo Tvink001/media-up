@@ -37,7 +37,7 @@ const icons: Record<string, ImageMetadata> = {
         channels.map((c) => (
           <li class="channel">
             <span class="channel__tile" aria-hidden="true">
-              <Image src={icons[c.icon]} width={120} height={68} alt="" loading="lazy" />
+              <Image src={icons[c.icon]} width={196} height={168} fit="fill" alt="" loading="lazy" />
             </span>
             <div class="channel__text">
               <h3 class="channel__name">{c.name}</h3>

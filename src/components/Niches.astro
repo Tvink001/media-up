@@ -37,7 +37,7 @@ const icons: Record<NicheIconKey, ImageMetadata> = {
         niches.map((n) => (
           <li class="niche">
             <span class="niche__icon" aria-hidden="true">
-              <Image src={icons[n.icon]} width={160} height={90} alt="" loading="lazy" />
+              <Image src={icons[n.icon]} width={196} height={168} fit="fill" alt="" loading="lazy" />
             </span>
             <div class="niche__head">
               <h3 class="niche__title">{n.title}</h3>
